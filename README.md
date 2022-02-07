@@ -5,19 +5,20 @@ The difference in pixels is saved to a results image where each detected pixle d
 
 ## Usage
 ```
-image-diff.exe <FIRST_IMAGE_LOC> <SECOND_IMAGE_LOC> <RESULTS_LOC>
-
-ARGS:
-    <FIRST_IMAGE_LOC>     
-    <SECOND_IMAGE_LOC>
-    <RESULTS_LOC>
+USAGE:
+    image-diff.exe --first-image <FIRST_IMAGE> --second-image <SECOND_IMAGE> 
+--results-image <RESULTS_IMAGE>
 
 OPTIONS:
-    -h, --help    Print help information
+    -f, --first-image <FIRST_IMAGE>        
+    -h, --help                             Print help information
+    -r, --results-image <RESULTS_IMAGE>    
+    -s, --second-image <SECOND_IMAGE>      
+    -V, --version                          Print version information
 ```
 To run with `cargo`, simply call `cargo run -- <cli args>`. Example:
 ```
-# cargo run -- <PATH_TO_FIRST_IMAGE> <PATH_TO_SECOND_IMAGE> <PATH_WHERE_YOU_WANT_THE_THE_RESULTS_IMAGE_SAVED>
+# cargo run -- <FIRST_IMAGE> <SECOND_IMAGE> <RESULTS_IMAGE>
 
 cargo run -- C:\Users\15034\Desktop\image-diff-test\first.jpg C:\Users\15034\Desktop\image-diff-test\png\second.png C:\Users\15034\Desktop\image-diff-test\png\diff_results.png
 ```
