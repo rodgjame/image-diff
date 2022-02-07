@@ -1,6 +1,8 @@
 [package]
 name = "image-diff"
+authors = ["James Rodgers <rodgjame@gmail.com>"]
 version = "0.1.0"
+description = "Detect the difference between 2 images"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

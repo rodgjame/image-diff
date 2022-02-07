@@ -8,25 +8,25 @@ use image::{GenericImageView, ImageFormat, RgbImage, Rgb};
 
 /// Detect the difference between 2 images
 #[derive(Parser)]
+#[clap(author, version, about, long_about = None)]
 struct Cli {
     // The first image location
-    #[clap(parse(from_os_str))]
-    first_image_loc: std::path::PathBuf,
+    #[clap(parse(from_os_str), short, long)]
+    first_image: std::path::PathBuf,
     
     // The second image location
-    #[clap(parse(from_os_str))]
-    second_image_loc: std::path::PathBuf,
+    #[clap(parse(from_os_str), short, long)]
+    second_image: std::path::PathBuf,
 
     // The results image location
-    #[clap(parse(from_os_str))]
-    results_loc: std::path::PathBuf
+    #[clap(parse(from_os_str), short, long)]
+    results_image: std::path::PathBuf
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
-    println!("Hello, world!");
     let args = Cli::parse();
-    let first_image = image::open(&args.first_image_loc).unwrap();
-    let second_image = image::open(&args.second_image_loc).unwrap();
+    let first_image = image::open(&args.first_image).unwrap();
+    let second_image = image::open(&args.second_image).unwrap();
     
     // if the images are not the same size,
     // then we don't want to process them
@@ -63,8 +63,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
     }
 
     println!("The number of different pixles is {}", different_pixles);
-    println!("Saving diff image to {:?}", &args.results_loc);
-    diff_image.save(&args.results_loc).unwrap();
+    println!("Saving diff image to {:?}", &args.results_image);
+    diff_image.save(&args.results_image).unwrap();
     println!("diff image saved");
     
     Ok(())
