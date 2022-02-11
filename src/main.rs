@@ -1,11 +1,7 @@
-// TODO remove later
-#![allow(unused)]
-
 extern crate image;
 
 use clap::Parser;
-use image::{GenericImageView, ImageFormat, RgbaImage, Rgba, Pixel};
-use std::cmp::{min, max};
+use image::{GenericImageView, RgbaImage, Rgba};
 
 /// Detect the difference between 2 images
 #[derive(Parser)]
@@ -37,7 +33,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
 
     // let's count the number of pixles
     let mut count = 0;
-    for i in first_image.pixels() {
+    for _ in first_image.pixels() {
         count += 1;
     }
     println!("The first image has {} pixles", count);
@@ -47,7 +43,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
     let mut diff_image = RgbaImage::new(first_image_width, first_image_height);
     let mut x = 0;
     let mut y = 0;
-    let mut different_pixles = 0;
     while x < first_image_width {
         while y < first_image_height {
             let should_mark = compare_pixles(&first_image.get_pixel(x, y), &second_image.get_pixel(x, y));
@@ -56,7 +51,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
             }
             y += 1;
         }
-
         y = 0;
         x += 1;
     }
